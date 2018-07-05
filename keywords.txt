@@ -22,6 +22,8 @@ getSignalRate		 KEYWORD2
 getRangeStatus		 KEYWORD2
 setDistanceMode		 KEYWORD2
 getDistanceMode		 KEYWORD2
+setIntermeasurementPeriod KEYWORD2
+getIntermeasurementPeriod KEYWORD2
 
 readRegister		 KEYWORD2
 readRegister16		 KEYWORD2

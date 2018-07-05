@@ -134,6 +134,22 @@ void VL53L1X::startMeasurement(uint8_t offset)
   }
 }
 
+void VL53L1X::setIntermeasurementPeriod (uint32_t intermeasurementPeriod)
+{
+	uint32_t resOscCalibrateVal = readRegister16(0xDE);
+	_intermeasurementPeriod = intermeasurementPeriod;
+	intermeasurementPeriod = intermeasurementPeriod * resOscCalibrateVal;
+	configBlock[0x6F] = intermeasurementPeriod >> 24;
+	configBlock[0x70] = intermeasurementPeriod >> (16 & 0xFF);
+	configBlock[0x6D] = intermeasurementPeriod >> (8 & 0xFF);
+	configBlock[0x6E] = intermeasurementPeriod >> 0xFF;
+}
+
+uint32_t VL53L1X::getIntermeasurementPeriod ()
+{
+	return _intermeasurementPeriod;
+}
+
 //Polls the measurement completion bit
 boolean VL53L1X::newDataReady()
 {

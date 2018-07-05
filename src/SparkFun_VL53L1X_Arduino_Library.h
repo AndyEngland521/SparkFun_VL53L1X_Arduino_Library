@@ -89,6 +89,8 @@ class VL53L1X {
     boolean newDataReady(); //Polls the measurement completion bit
     uint16_t getDistance(); //Returns the results from the last measurement, distance in mm
     uint16_t getSignalRate(); //Returns the results from the last measurement, signal rate
+	void setIntermeasurementPeriod(uint32_t intermeasurementPeriod);
+	uint32_t getIntermeasurementPeriod();
 	void setDistanceMode(uint8_t mode = 2);//Defaults to long range
 	uint8_t getDistanceMode();
     uint8_t getRangeStatus(); //Returns the results from the last measurement, 0 = valid
@@ -104,6 +106,7 @@ class VL53L1X {
     TwoWire *_i2cPort; //The generic connection to user's chosen I2C hardware
 	uint8_t _deviceAddress;
     uint8_t _distanceMode = 0;
+	uint32_t _intermeasurementPeriod = 200;
 };
 
 #endif
