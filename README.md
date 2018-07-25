@@ -3,7 +3,7 @@ SparkFun VL53L1X Distance Sensor Library
 
 ![SparkFun VL53L1X Distance Sensor](https://cdn.sparkfun.com//assets/parts/1/2/8/6/3/14667-ToF_Laser_Distance_Sensor__Qwiic__-_VL53L1X-01.jpg)
 
-[*SparkX Qwiic Distance Sensor - VL532L1X (SPX-14667)*](https://www.sparkfun.com/products/14667)
+[*SparkFun Qwiic Distance Sensor - VL532L1X (SEN-14722)*](https://www.sparkfun.com/products/14722)
 
 The VL53L1X is the latest Time Of Flight (ToF) sensor to be released. It uses a VCSEL (vertical cavity surface emitting laser) to emit a class 1 IR laser and time the reflection to the target. What does all this mean? You can measure the distance to an object up to 4 meters away with millimeter resolution! That’s pretty incredible.
 

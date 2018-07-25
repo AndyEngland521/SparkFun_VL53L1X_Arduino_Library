@@ -18,6 +18,8 @@ softReset		 KEYWORD2
 startMeasurement		 KEYWORD2
 newDataReady		 KEYWORD2
 getDistance		 KEYWORD2
+getCalibratedDistance		 KEYWORD2
+calibrateOffset		 KEYWORD2
 getSignalRate		 KEYWORD2
 getRangeStatus		 KEYWORD2
 setDistanceMode		 KEYWORD2

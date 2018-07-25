@@ -88,12 +88,16 @@ class VL53L1X {
     void startMeasurement(uint8_t offset = 0); //Write a block of bytes to the sensor to configure it to take a measurement
     boolean newDataReady(); //Polls the measurement completion bit
     uint16_t getDistance(); //Returns the results from the last measurement, distance in mm
+	uint16_t getCalibratedDistance();
+	uint16_t calibrateOffset(uint16_t targetDistance);
     uint16_t getSignalRate(); //Returns the results from the last measurement, signal rate
 	void setIntermeasurementPeriod(uint32_t intermeasurementPeriod);
 	uint32_t getIntermeasurementPeriod();
 	void setDistanceMode(uint8_t mode = 2);//Defaults to long range
 	uint8_t getDistanceMode();
-    uint8_t getRangeStatus(); //Returns the results from the last measurement, 0 = valid
+    uint8_t getRangeStatus(); //Returns the results from the last measurement, 0 == valid
+
+	void setupManualCalibration();
 
     uint8_t readRegister(uint16_t addr); //Read a byte from a 16-bit address
     uint16_t readRegister16(uint16_t addr); //Read two bytes from a 16-bit address
@@ -107,6 +111,7 @@ class VL53L1X {
 	uint8_t _deviceAddress;
     uint8_t _distanceMode = 0;
 	uint32_t _intermeasurementPeriod = 200;
+	int32_t _offset = 0;
 };
 
 #endif

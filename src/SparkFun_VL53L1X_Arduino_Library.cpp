@@ -200,6 +200,11 @@ uint16_t VL53L1X::getDistance()
   return (readRegister16(VL53L1_RESULT__FINAL_CROSSTALK_CORRECTED_RANGE_MM_SD0));
 }
 
+uint16_t VL53L1X::getCalibratedDistance()
+{
+	return (getDistance() + _offset);
+}
+
 //Get signal rate
 //This seems to be a number representing the quality of the measurement, the number of SPADs used perhaps
 uint16_t VL53L1X::getSignalRate()
@@ -347,6 +352,24 @@ uint8_t VL53L1X::getRangeStatus()
   }
 
   return measurementStatus;
+}
+
+void VL53L1X::setupManualCalibration()
+{
+	uint8_t result;
+	result = readRegister(VL53L1_VHV_CONFIG__INIT) & 0x7F;
+	writeRegister(VL53L1_VHV_CONFIG__INIT, result);
+	result = (readRegister(VL53L1_VHV_CONFIG__TIMEOUT_MACROP_LOOP_BOUND) & 0x03) + (3 << 2);
+	writeRegister(VL53L1_VHV_CONFIG__TIMEOUT_MACROP_LOOP_BOUND, result);
+	writeRegister(VL53L1_PHASECAL_CONFIG__OVERRIDE, 1);
+	result = readRegister(VL53L1_PHASECAL_RESULT__VCSEL_START);
+	writeRegister(VL53L1_CAL_CONFIG__VCSEL_START, result);
+}
+
+uint16_t VL53L1X::calibrateOffset(uint16_t targetDistance)
+{
+	_offset = targetDistance - getDistance();
+	return _offset;
 }
 
 //Reads one byte from a given location
